@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getHomeDataAction } from "./../../Store/actionCreators";
 class Home extends Component {
   render() {
-    console.log(this.props.homeData);
+  
     const { homeData } = this.props;
     return (
       <div className="container-fluid">

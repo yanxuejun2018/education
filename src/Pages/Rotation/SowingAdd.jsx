@@ -7,7 +7,7 @@ class SowingAdd extends Component {
             <div className="container-fluid">
                 <div className="body advert">
                     <ol className="breadcrumb">
-                        <li><Link to="/sowingList">轮播图管理</Link></li>
+                        <li><Link to="/sowing/list">轮播图管理</Link></li>
                         <li className="active">添加轮播图</li>
                     </ol>
                     <div className="advert-add">
@@ -81,7 +81,7 @@ class SowingAdd extends Component {
         addSowingData(formData).then((res)=>{
             if(res.status_code === 200){
                 console.log("上传数据成功");
-                this.props.history.push('/sowingList');
+                this.props.history.push('/sowing/list');
             }
         }).catch((err)=>{
             console.log("上传数据失败");

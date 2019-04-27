@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import xjp from './../../Common/uploads/xjp.jpg';
+import md5 from "md5";
+import { getUserDataAction } from "./../../Store/actionCreators";
+import xjp from "./../../Common/uploads/xjp.jpg";
 const S_KEY = "WaYjH1314.ItLikE.CoM";
 
 class Login extends Component {
@@ -18,11 +20,7 @@ class Login extends Component {
       <div className="login">
         <div className="login-wrap">
           <div className="avatar">
-            <img
-                      src={xjp}
-              className="img-circle"
-              alt=""
-            />
+            <img src={xjp} className="img-circle" alt="" />
           </div>
           <div className="col-md-offset-1 col-md-10">
             <div className="input-group input-group-lg">
@@ -67,25 +65,57 @@ class Login extends Component {
   // 1. 当输入框的内容发生改变
   _onInputChange(e) {
     // 1.2 更新数据
-    this.setState({});
+    let inputValue = e.target.value;
+    let inputName = e.target.name;
+
+    this.setState({
+      [inputName]: inputValue
+    });
   }
 
   // 2. 处理回车
-  _onInputKeyUp(e) {}
+  _onInputKeyUp(e) {
+    if (e.keyCode === 13) {
+      this._onSubmit();
+    }
+  }
 
   // 3. 当用户提交表单
   _onSubmit() {
+    const { user_name, user_pwd } = this.state;
+
+    if (!user_name) {
+      alert("输入账号不能为空");
+      return;
+    }
+    if (!user_pwd) {
+      alert("输入密码不能为空");
+      return;
+    }
+    const md5_user_pwd = md5(user_pwd + S_KEY);
+    let params = new URLSearchParams();
+    params.append("user_name", user_name);
+    params.append("user_pwd", md5_user_pwd);
+
     // 3.4 发起网络请求
-    // this.props.reqLogin(params, (userData)=>{
-    //
-    // })
+    this.props.reqLogin(params, userData => {
+      if (userData.token !== "") {
+        this.props.history.push("/");
+      }
+    });
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    reqLogin(data, callback) {}
+    reqLogin(data, callback) {
+      const action = getUserDataAction(data, callback);
+      dispatch(action);
+    }
   };
 };
 
-export default Login;
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
