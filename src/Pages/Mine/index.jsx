@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import icon from "./../../Common/images/default.png";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Tool from "./../../Components/Tool/Tool";
 const userData = JSON.parse(sessionStorage.getItem("userData"));
- const IMG_PRE = "http://localhost:1688/uploads/";
-  //  import Tool from "./../../Components/Tool/Tool";
-//  const _tool = new Tool();
+const IMG_PRE = "http://localhost:1688/uploads/";
+const _tool = new Tool();
 class Mine extends Component {
   constructor(props) {
     super(props);
@@ -213,13 +213,13 @@ class Mine extends Component {
 
     // 1.3 处理头像
     if (flag === "file") {
-      inputValue = "";
-      // _tool.fileToBase64Url(e.target.files[0], src => {
-      //   inputValue = src;
-      //   this.setState({
-      //     icon_url: inputValue
-      //   });
-      // });
+      let inputValue = "";
+      _tool.fileToBase64Url(e.target.files[0], src => {
+        inputValue = src;
+        this.setState({
+          icon_url: inputValue
+        });
+      });
     }
     // 更新状态机
     this.setState({
