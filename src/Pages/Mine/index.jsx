@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import icon from "./../../Common/images/default.png";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Tool from "./../../Components/Tool/Tool";
+import Tool from "../../Components/Tool/Tool";
+import * as constants from "../../Store/actionTypes";
+import { editUserData } from "../../Api/index";
 const userData = JSON.parse(sessionStorage.getItem("userData"));
 const IMG_PRE = "http://localhost:1688/uploads/";
 const _tool = new Tool();
+
 class Mine extends Component {
   constructor(props) {
     super(props);
@@ -252,19 +255,18 @@ class Mine extends Component {
     formData.append("join_time", join_time);
     formData.append("intro_self", intro_self);
     formData.append("icon_url", this.refs.icon_url.files[0] || icon_url);
-
     // 3. 发送请求
-    // editUserData(formData)
-    //   .then(res => {
-    //     if (res.status_code === 200) {
-    //       this.props.refreshLocalUserData(res.result);
-    //       alert("保存用户信息成功！");
-    //       this.props.history.push("/");
-    //     }
-    //   })
-    //   .catch(() => {
-    //     alert("保存用户信息失败！");
-    //   });
+   editUserData(formData)
+      .then(res => {
+        if (res.status_code === 200) {
+          this.props.refreshLocalUserData(res.result);
+          alert("保存用户信息成功！");
+          this.props.history.push("/");
+        }
+      })
+      .catch(() => {
+        alert("保存用户信息失败！");
+      });
   }
 }
 const mapStateToProps = state => {
@@ -274,7 +276,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    reqMineData() {}
+    refreshLocalUserData(userData) {
+      dispatch({
+        type: constants.INIT_USER_DATA,
+        userData
+      });
+    }
   };
 };
 export default connect(

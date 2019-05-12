@@ -5,7 +5,7 @@ import SowingAdd from "../Pages/Rotation/SowingAdd";
 import SowingEdit from "../Pages/Rotation/SowingEdit";
 import CourseAdd from "../Pages/Course/CourseAdd";
 import User from "../Pages/User";
-import Mine from "../Pages/Mine";
+import Mine from "../Pages/Mine/index";
 import CourseCategory from "../Pages/Course/CourseCategory";
 import CourseList from "../Pages/Course/CourseList";
 import CourseTopic from "../Pages/Course/CourseTopic";

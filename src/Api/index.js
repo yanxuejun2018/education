@@ -13,3 +13,7 @@ export const removeSowingData=(id)=>ajax(BASE_URL+'/sowing/api/remove/'+id);
 export const editSowingData =(data)=>ajax(BASE_URL+'/sowing/api/edit',data,'POST');
 //用户登录
 export const getUserData = (data) => ajax(BASE_URL + '/user/api/login', data, 'POST');
+//修改用户数据
+export const editUserData = (data) => ajax(BASE_URL + '/user/api/edit', data, 'POST');
+// 8. 修改用户密码
+export const editPwdData = (data) => ajax(BASE_URL + '/user/api/reset', data, 'POST');

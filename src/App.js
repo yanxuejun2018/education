@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import LayOut from "./Components/LayOut/index";
 import User from "./Pages/User";
-import Mine from "./Pages/Mine";
 import SwiongRouter from "./Pages/Rotation/router";
 import CourseRouter from "./Pages/Course/router";
+import MineRouder from "./Pages/Mine/router";
 import Login from "./Pages/Login/index";
 import Home from "./Pages/Home/index";
 import * as constants from "./Store/actionTypes";
@@ -18,17 +18,15 @@ import {
 
 class App extends Component {
   componentWillMount() {
-   this.props.reqLocalData()
+    this.props.reqLocalData();
   }
   render() {
-
-
     let LayOutRouter = (
       <LayOut>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/user" component={User} />
-          <Route path="/mine" component={Mine} />
+          <Route path="/mine" component={MineRouder} />
           <Route path="/sowing" component={SwiongRouter} />
           <Route path="/course" component={CourseRouter} />
           <Route component={ErrorPage} />
@@ -43,7 +41,7 @@ class App extends Component {
             exact
             path="/"
             render={
-            this.props.userData
+              this.props.userData
                 ? props => LayOutRouter
                 : () => <Redirect to="/login" push />
             }
