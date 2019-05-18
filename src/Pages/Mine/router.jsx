@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // 页面
-import Mine from "./index";
+import Mine from "./Mine";
 import ResetPwd from "./ResetPwd";
 
 class MineRouter extends Component {

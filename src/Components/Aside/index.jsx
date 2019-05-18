@@ -1,16 +1,29 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import avatar from "./../../Common/uploads/xjp.jpg";
 import { Link, NavLink } from "react-router-dom";
-export default class Aside extends Component {
+import { editUserData } from "../../Api";
+// 获取本地的用户数据
+const userData = JSON.parse(sessionStorage.getItem("userData"));
+const IMG_PRE = "http://localhost:1688/uploads/";
+ class Aside extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+     
+    };
+  }
+
   render() {
+    const { userData } = this.props;
     return (
       <div className="aside">
         <div className="profile">
           <div className="avatar img-circle">
-            <img src={avatar} alt="帅哥" />
+            <img src={userData.icon_url ? IMG_PRE + userData.icon_url : avatar} />
           </div>
-          <h4>习近平</h4>
+             <h4>{userData.real_name}</h4>
         </div>
         <div className="navs">
           <ul className="list-unstyled">
@@ -92,3 +105,9 @@ export default class Aside extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    userData: state.userData
+  }
+};
+export default connect(mapStateToProps, null)(Aside);

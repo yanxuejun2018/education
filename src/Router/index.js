@@ -1,11 +1,10 @@
 import Home from "../Pages/Home/index";
-
 import SowingList from "../Pages/Rotation/SowingList";
 import SowingAdd from "../Pages/Rotation/SowingAdd";
 import SowingEdit from "../Pages/Rotation/SowingEdit";
 import CourseAdd from "../Pages/Course/CourseAdd";
 import User from "../Pages/User";
-import Mine from "../Pages/Mine/index";
+import Mine from "../Pages/Mine/Mine";
 import CourseCategory from "../Pages/Course/CourseCategory";
 import CourseList from "../Pages/Course/CourseList";
 import CourseTopic from "../Pages/Course/CourseTopic";

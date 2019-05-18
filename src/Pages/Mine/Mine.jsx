@@ -256,12 +256,15 @@ class Mine extends Component {
     formData.append("intro_self", intro_self);
     formData.append("icon_url", this.refs.icon_url.files[0] || icon_url);
     // 3. 发送请求
-   editUserData(formData)
+
+    editUserData(formData)
       .then(res => {
         if (res.status_code === 200) {
           this.props.refreshLocalUserData(res.result);
           alert("保存用户信息成功！");
-          this.props.history.push("/");
+          // this.props.history.push("/");
+          // 2. 回到首页
+          window.location.href = "/";
         }
       })
       .catch(() => {

@@ -1,5 +1,10 @@
 import * as constants from "./actionTypes";
-import { getHomeData, getSowData, getUserData } from "./../Api/index";
+import {
+  getHomeData,
+  getSowData,
+  getUserData,
+  getStudentData
+} from "./../Api/index";
 
 // 获取首页轮播图
 export const getHomeDataAction = () => {
@@ -62,6 +67,27 @@ export const getUserDataAction = (data, callback) => {
       })
       .catch(error => {
         alert(error);
+      });
+  };
+};
+
+// 3. 获取学生列表列表数据
+export const getStudentDataAction = parmas => {
+  return dispatch => {
+    // 请求网络数据
+    getStudentData(parmas)
+      .then(res => {
+        if (res.status_code === 200) {
+          const studentData = res.result;
+
+          dispatch({
+            type: constants.INIT_STUDENT_DATA,
+            studentData
+          });
+        }
+      })
+      .catch(() => {
+        alert("学生数据请求失败！");
       });
   };
 };
