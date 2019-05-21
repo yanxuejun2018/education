@@ -2,7 +2,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: sans-serif;
-    background-color: #e0e0e0;
+    background-color:#fff;
 }
 
 img {
@@ -11,7 +11,7 @@ img {
 }
 
 a {
-    display: inline-block;
+    display: block;
 }
 
 a:hover, a:focus {
@@ -33,9 +33,9 @@ a:hover, a:focus {
     border-bottom: 1px solid #EEE;
     border-radius: 0;
 }
-/*.aside .navs .active {*/
-    /*background-color: #666666;*/
-/*}*/
+.aside .navs .actives {
+    background-color: #666666;
+}
 .header .navbar-brand {
     height: auto;
     line-height: 1;

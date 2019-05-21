@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getStudentDataAction } from "../../Store/actionCreators";
 import { getStudentCountData } from "./../../Api/index";
-
+import Pagination  from './../../Components/Pagination/index'
 class User extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +81,7 @@ class User extends Component {
               <tbody>
                 {studentData.map((student, index) => (
                   <tr key={index}>
-                    <td>{"LK" + (index + 1)}</td>
+                    <td>{"LK" + (flagCount+index + 1)}</td>
                     <td>{student.reg_account}</td>
                     <td>{student.user_name}</td>
                     <td>{student.user_age}</td>
@@ -107,6 +107,12 @@ class User extends Component {
               </tbody>
             </table>
           </div>
+          <Pagination 
+          current={this.state.pageNum}
+           total={this.state.total}
+            pageSize={this.state.pageSize}
+            onChange={(pageNum) => this._onPageNumChange(pageNum)}
+            />
         </div>
       </div>
     );

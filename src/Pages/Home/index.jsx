@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import EchartsOne from '../../Components/Echarts/EchartsOne'
+import EchartsTwo from './../../Components/Echarts/EchartsTwo'
 import { getHomeDataAction } from "./../../Store/actionCreators";
 class Home extends Component {
   render() {
@@ -57,10 +59,10 @@ class Home extends Component {
             </div>
             <div className="lk-chart">
               <div className="chart">
-                <div id="main1" style={{ height: 400 }} />
+                <EchartsOne/>
               </div>
               <div className="chart">
-                <div id="main2" style={{ height: 400 }} />
+                <EchartsTwo/>
               </div>
             </div>
           </div>

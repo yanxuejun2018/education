@@ -40,7 +40,7 @@ class Rotation extends Component {
               <tbody>
                 {SowData.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{item._id}</td>
                       <td>{item.image_title}</td>
                       <td>
