@@ -3,7 +3,9 @@ import {
   getHomeData,
   getSowData,
   getUserData,
-  getStudentData
+  getStudentData,
+  getCategoryData
+  
 } from "./../Api/index";
 
 // 获取首页轮播图
@@ -90,4 +92,21 @@ export const getStudentDataAction = parmas => {
         alert("学生数据请求失败！");
       });
   };
+};
+// 4. 获取课程分类列表数据
+export const getCategoryDataAction = () => {
+  return (dispatch) => {
+    // 请求网络数据
+    getCategoryData().then((res) => {
+      if (res.status_code === 200) {
+        const categoryData = res.result;
+        dispatch({
+          type: constants.INIT_CATEGORY_DATA,
+          categoryData
+        })
+      }
+    }).catch(() => {
+      alert('分类数据请求失败！')
+    })
+  }
 };

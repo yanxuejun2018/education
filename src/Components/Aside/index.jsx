@@ -72,10 +72,10 @@ class Aside extends Component {
                   <NavLink to={"/course/add"}>商品添加</NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/course/category"}>商品列表</NavLink>
+                  <NavLink to={"/course/category"}>商品分类</NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/course/list"}>商品分类</NavLink>
+                  <NavLink to={"/course/list"}>商品列表</NavLink>
                 </li>
                 <li>
                   <NavLink to={"/course/topic"}>商品专题</NavLink>

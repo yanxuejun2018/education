@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class CourseCategory extends Component {
   render() {
     return (
@@ -12,12 +12,12 @@ class CourseCategory extends Component {
             <li className="active">课程分类</li>
           </ol>
           <div className="page-title">
-            <a
-              href="./course_category_add.html"
+            <Link
+              to={"/course/categoryAdd"}
               className="btn btn-danger btn-sm pull-right"
             >
               添加分类
-            </a>
+            </Link>
           </div>
           <div className="panel panel-default">
             <table className="table table-bordered">
@@ -37,12 +37,12 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a
-                      href="./course_category_add.html"
+                    <Link
+                      to={"/course/categoryAdd"}
                       className="btn btn-info btn-xs"
                     >
                       编辑
-                    </a>
+                    </Link>
                   </td>
                 </tr>
                 <tr>

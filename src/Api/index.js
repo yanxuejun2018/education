@@ -27,3 +27,5 @@ export const editPwdData = data =>
 export const getStudentData = data => ajax(BASE_URL + "/stu/api/list", data);
 // 10. 请求用户的数据
 export const getStudentCountData = () => ajax(BASE_URL + "/stu/api/count");
+// 11. 请求分类的数据
+export const getCategoryData = () => ajax(BASE_URL + "/category/api/list");
