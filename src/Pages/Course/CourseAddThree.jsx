@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+ import { addSourceData } from './../../Api/index'
 import course from "./../../Common/images/course.jpg"
 export class CourseAddThree extends Component {
   render() {
@@ -13,16 +15,7 @@ export class CourseAddThree extends Component {
             <li className="active">课程添加</li>
           </ol>
           <div className="steps">
-            <div className="brief">
-              <div className="thumb">
-                <img src={course} alt="" />
-              </div>
-              <dl className="info">
-                <dt>从零玩转H5+C3</dt>
-                <dd>讲师：叶建华老师</dd>
-                <dd>课时：168</dd>
-              </dl>
-            </div>
+           
             <ul className="forwards list-unstyled">
               <li>
                 <Link to={"/course/addOne"} className="done">
@@ -170,6 +163,13 @@ export class CourseAddThree extends Component {
                   </li>
                 </ul>
               </div>
+              <div className="col-md-2">
+                <button
+                  onClick={() => this._dealClick()}
+                  className="btn btn-danger btn-sm pull-right">
+                  提交课程
+                                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -232,6 +232,51 @@ export class CourseAddThree extends Component {
       </React.Fragment>
     );
   }
+  _dealClick() {
+    // 1. 取出数据
+    const addCourseData = this.props.addCourseData;
+
+    // 2. 创建formData
+    let formData = new FormData();
+    formData.append('course_name', addCourseData.course_name);
+    formData.append('course_title', addCourseData.course_title);
+    formData.append('course_sub_title', addCourseData.course_sub_title);
+    formData.append('course_teacher', addCourseData.course_teacher);
+    formData.append('course_serialize_status', addCourseData.course_serialize_status);
+    formData.append('main_category', addCourseData.main_category);
+    formData.append('sub_category', addCourseData.sub_category);
+    formData.append('course_intro', addCourseData.course_intro);
+    formData.append('course_tag', addCourseData.course_tag);
+    formData.append('course_page', addCourseData.course_page_url);
+
+    // 3. 发起请求
+    addSourceData(formData).then((res) => {
+      if (res.status_code === 200) {
+        this.props.addCourseData.course_name = '';
+        this.props.addCourseData.course_title = '';
+        this.props.addCourseData.course_sub_title = '';
+        this.props.addCourseData.course_teacher = '';
+        this.props.addCourseData.course_serialize_status = '';
+        this.props.addCourseData.main_category = '';
+        this.props.addCourseData.sub_category = '';
+        this.props.addCourseData.course_intro = '';
+        this.props.addCourseData.course_tag = '';
+        this.props.addCourseData.course_page = '';
+        this.props.addCourseData.course_page_url = {};
+        this.props.history.push('/');
+      }
+    }).catch((error) => {
+      console.log(error);
+      alert('上传课程失败');
+    })
+
+  }
 }
 
-export default CourseAddThree;
+const mapStateToProps = (state) => {
+  return {
+    addCourseData: state.addCourseData
+  }
+};
+
+export default connect(mapStateToProps, null)(CourseAddThree);

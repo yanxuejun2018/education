@@ -5,6 +5,7 @@ class Tool {
     const reader = new FileReader();
     if (file) {
       reader.readAsDataURL(file);
+      
     } else {
       src = "";
     }

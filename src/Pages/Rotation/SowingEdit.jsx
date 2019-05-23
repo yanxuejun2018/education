@@ -172,35 +172,35 @@ class SowingEdit extends Component {
     // 1. 根据ref获取用户上传的文件
     let file = this.refs[imgRef].files[0];
     console.log(file);
-    let inputValue = '';
-    _tool.fileToBase64Url(file, src => {
-      inputValue = src;
-      this.setState({
-        image_url: inputValue
-      });
-    });
-    // 2. 修改图片的信息
-    // let src = "";
-    // const reader = new FileReader();
-    // if (file) {
-    //   reader.readAsDataURL(file);
-    // } else {
-    //   src = "";
-    // }
+    // let inputValue = '';
+    // _tool.fileToBase64Url(file, src => {
+    //   inputValue = src;
+    //   this.setState({
+    //     image_url: inputValue
+    //   });
+    // });
+    //2. 修改图片的信息
+    let src = "";
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      src = "";
+    }
     // 阅读器已经解析完毕
-    // reader.onloadend = () => {
-    //   src = reader.result;
+    reader.onloadend = () => {
+      src = reader.result;
     // 判断
-    //   if (imgRef === "image_url") {
-    //     this.setState({
-    //       image_url: src
-    //     });
-    //   } else {
-    //     this.setState({
-    //       image_small_url: src
-    //     });
-    //   }
-    // };
+      if (imgRef === "image_url") {
+        this.setState({
+          image_url: src
+        });
+      } else {
+        this.setState({
+          image_small_url: src
+        });
+      }
+    };
   }
   // 点击修改按钮
   _dealWithClick() {

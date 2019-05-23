@@ -29,3 +29,7 @@ export const getStudentData = data => ajax(BASE_URL + "/stu/api/list", data);
 export const getStudentCountData = () => ajax(BASE_URL + "/stu/api/count");
 // 11. 请求分类的数据
 export const getCategoryData = () => ajax(BASE_URL + "/category/api/list");
+// 12. 添加课程数据
+export const addSourceData = (data) => ajax(BASE_URL + '/course/api/add', data, 'POST');
+// 13. 请求课程的数据
+export const getSourceData = () => ajax(BASE_URL + '/course/api/list');

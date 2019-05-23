@@ -4,7 +4,8 @@ import {
   getSowData,
   getUserData,
   getStudentData,
-  getCategoryData
+  getCategoryData,
+  getSourceData
   
 } from "./../Api/index";
 
@@ -107,6 +108,24 @@ export const getCategoryDataAction = () => {
       }
     }).catch(() => {
       alert('分类数据请求失败！')
+    })
+  }
+};
+
+// 5. 获取课程列表数据
+export const getSourceDataAction = () => {
+  return (dispatch) => {
+    // 请求网络数据
+    getSourceData().then((res) => {
+      if (res.status_code === 200) {
+        const sourceData = res.result;
+        dispatch({
+          type: constants.INIT_SOURCE_DATA,
+          sourceData
+        })
+      }
+    }).catch(() => {
+      alert('课程数据请求失败！')
     })
   }
 };
